@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="#">MyPortfolio</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="greeting">こんにちは、はじめまして</p>
+      <h1>Your Name</h1>
+      <p class="tagline">Developer &amp; Creator</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">実績を見る</a>
+        <a href="#contact" class="btn-outline">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="hero-scroll">↓</div>
+  </section>
+
+  <!-- Aboutセクション -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>はじめまして。私は <strong>Your Name</strong> です。</p>
+          <p>Webアプリケーションの設計・開発を中心に活動しています。ユーザーにとって使いやすく、技術的にも堅牢なプロダクトを作ることが得意です。</p>
+          <p>プログラミングを通じて課題を解決することに情熱を持っています。</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">年の経験</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">20+</span>
+            <span class="stat-label">プロジェクト</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">クライアント</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skillsセクション -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🌐</div>
+          <h3>フロントエンド</h3>
+          <p>HTML / CSS / JavaScript<br>React / Vue.js</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">⚙️</div>
+          <h3>バックエンド</h3>
+          <p>Node.js / Python<br>REST API 設計</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🗄️</div>
+          <h3>データベース</h3>
+          <p>PostgreSQL / MySQL<br>MongoDB</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">☁️</div>
+          <h3>インフラ</h3>
+          <p>Docker / AWS<br>CI/CD パイプライン</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projectsセクション -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img">🚀</div>
+          <div class="project-info">
+            <h3>プロジェクト名 A</h3>
+            <p>Webアプリケーションの開発事例。React と Node.js を使用したフルスタック構成。</p>
+            <div class="project-tags">
+              <span>React</span><span>Node.js</span><span>PostgreSQL</span>
+            </div>
+            <a href="#" class="project-link">詳細を見る →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">📱</div>
+          <div class="project-info">
+            <h3>プロジェクト名 B</h3>
+            <p>モバイルファーストで設計したECサイト。パフォーマンス最適化に注力。</p>
+            <div class="project-tags">
+              <span>Vue.js</span><span>Python</span><span>MySQL</span>
+            </div>
+            <a href="#" class="project-link">詳細を見る →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">🔧</div>
+          <div class="project-info">
+            <h3>プロジェクト名 C</h3>
+            <p>社内業務効率化ツール。自動化によって作業時間を60%削減した実績。</p>
+            <div class="project-tags">
+              <span>Python</span><span>Docker</span><span>AWS</span>
+            </div>
+            <a href="#" class="project-link">詳細を見る →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contactセクション -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-desc">お気軽にご連絡ください。お仕事のご依頼・ご相談お待ちしております。</p>
+      <form class="contact-form">
+        <div class="form-row">
+          <input type="text" placeholder="お名前" required>
+          <input type="email" placeholder="メールアドレス" required>
+        </div>
+        <input type="text" placeholder="件名">
+        <textarea rows="5" placeholder="メッセージ内容" required></textarea>
+        <button type="submit" class="btn-primary">送信する</button>
+      </form>
+      <div class="social-links">
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2026 Your Name. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
