@@ -1,11 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ===== ヘッダー スクロール影 ===== */
+  /* ===== ヘッダー スクロール切り替え ===== */
   const header = document.getElementById('header');
-  const onScroll = () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ===== ハンバーガーメニュー ===== */
+  const toggle = document.querySelector('.menu-toggle');
+  const nav    = document.querySelector('.global-nav');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
 
   /* ===== スムーズスクロール ===== */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -13,60 +22,54 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      const offset = 72; // ヘッダー高さ
       window.scrollTo({
-        top: target.getBoundingClientRect().top + window.scrollY - offset,
+        top: target.getBoundingClientRect().top + window.scrollY - 72,
         behavior: 'smooth'
       });
       // モバイルナビを閉じる
       nav.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
   });
 
-  /* ===== ナビゲーション アクティブ ===== */
+  /* ===== ナビ アクティブ状態 ===== */
   const navLinks = document.querySelectorAll('.global-nav ul a');
-  const sections = document.querySelectorAll('section[id], .hero[id]');
+  const sections = document.querySelectorAll('section[id]');
 
-  const sectionObserver = new IntersectionObserver(entries => {
+  new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        link.classList.toggle('active', href === `#${id}`);
-      });
+      const id = entry.target.id;
+      navLinks.forEach(link =>
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`)
+      );
     });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-
-  sections.forEach(s => sectionObserver.observe(s));
-
-  /* ===== モバイルハンバーガーメニュー ===== */
-  const toggle = document.querySelector('.menu-toggle');
-  const nav    = document.querySelector('.global-nav');
-
-  toggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
-    // 背景スクロール防止
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
+  }, { rootMargin: '-35% 0px -55% 0px' })
+  .observe && sections.forEach(s =>
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link =>
+          link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`)
+        );
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' }).observe(s)
+  );
 
   /* ===== フェードインアニメーション ===== */
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const fadeObserver = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
-  fadeEls.forEach((el, i) => {
-    // 同じグリッド内の子要素に時差アニメーションを付与
-    el.style.transitionDelay = `${(i % 4) * 0.1}s`;
-    fadeObserver.observe(el);
+  document.querySelectorAll('.fade-in').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 4) * 0.12}s`;
+    observer.observe(el);
   });
 
   /* ===== コンタクトフォーム（デモ） ===== */
@@ -76,11 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       btn.textContent = '送信しました。ありがとうございます。';
-      btn.style.background = '#6a9e6a';
+      btn.style.background = '#4a7c59';
+      btn.style.boxShadow = 'none';
       btn.disabled = true;
       setTimeout(() => {
         btn.textContent = '送信する';
         btn.style.background = '';
+        btn.style.boxShadow = '';
         btn.disabled = false;
         form.reset();
       }, 4000);
